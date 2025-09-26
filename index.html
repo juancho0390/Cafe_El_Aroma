@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café El Aroma - Tu Ritual Diario, Elevado.</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Styles and Animations -->
+    <style>
+        :root {
+            --bg-main: #F9F6F1; /* Off-white, warm */
+            --text-dark: #2D2A26; /* Deep coffee brown */
+            --text-body: #5B5650;
+            --brand-accent: #E58A4E; /* Terracotta / vibrant orange */
+            --brand-secondary: #A3B4A2; /* Sage green */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+        }
+
+        /* Custom Colors for Tailwind */
+        .bg-brand-dark { background-color: var(--text-dark); }
+        .bg-brand-accent { background-color: var(--brand-accent); }
+        .bg-brand-secondary { background-color: var(--brand-secondary); }
+        .text-brand-dark { color: var(--text-dark); }
+        .text-brand-accent { color: var(--brand-accent); }
+        .border-brand-accent { border-color: var(--brand-accent); }
+        .ring-brand-accent { ring-color: var(--brand-accent); }
+        .hover\:bg-brand-accent:hover { background-color: var(--brand-accent); }
+
+        /* Preloader styles (Kept from original) */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-main);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        #preloader .coffee-bean {
+            width: 30px;
+            height: 38px;
+            background-color: var(--text-dark);
+            border-radius: 50% / 60%;
+            position: relative;
+            overflow: hidden;
+            animation: spin 1.5s infinite linear;
+        }
+        #preloader .coffee-bean::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            width: 5px;
+            height: 110%;
+            background: var(--bg-main);
+            transform: translateX(-50%) rotate(15deg);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Animation Trigger Classes (Kept and tweaked from original) */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up { transform: translateY(40px); }
+        .slide-in-left { transform: translateX(-50px); }
+        .slide-in-right { transform: translateX(50px); }
+        .zoom-in { transform: scale(0.95); }
+        .is-visible { opacity: 1; transform: none; }
+        
+        /* Modern Underline Effect */
+        .link-underline {
+            position: relative;
+            text-decoration: none;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--brand-accent);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Custom gradient for card hover */
+        .gradient-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="coffee-bean"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-brand-dark transition-colors duration-300" id="header-logo">Café El Aroma</a>
+            <div class="hidden lg:flex items-center space-x-10 text-sm font-medium">
+                <a href="#about" class="text-brand-dark hover:text-brand-accent transition link-underline">Sobre Nosotros</a>
+                <a href="#products" class="text-brand-dark hover:text-brand-accent transition link-underline">Nuestros Cafés</a>
+                <a href="#process" class="text-brand-dark hover:text-brand-accent transition link-underline">Proceso</a>
+                <a href="#blog" class="text-brand-dark hover:text-brand-accent transition link-underline">Blog</a>
+                <a href="#contact" class="bg-brand-dark text-white px-6 py-2.5 rounded-full hover:bg-brand-accent transition">Contacto</a>
+            </div>
+            <button id="mobile-menu-button" class="lg:hidden text-brand-dark focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md shadow-lg">
+            <a href="#about" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Sobre Nosotros</a>
+            <a href="#products" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Nuestros Cafés</a>
+            <a href="#process" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Proceso</a>
+            <a href="#blog" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Blog</a>
+            <a href="#contact" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-on-scroll fade-in-up is-visible">Tu Ritual Diario, Elevado.</h1>
+                    <p class="text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mb-8 animate-on-scroll fade-in-up is-visible" style="transition-delay: 200ms;">Descubre la pasión y el sabor auténtico en cada grano. Café de origen, tostado para inspirar tus momentos.</p>
+                    <div class="flex gap-4 justify-center lg:justify-start animate-on-scroll fade-in-up is-visible" style="transition-delay: 400ms;">
+                        <a href="#products" class="bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">Explora Nuestros Cafés</a>
+                        <a href="#process" class="bg-gray-200 text-brand-dark px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-300 transition-transform transform hover:scale-105">Nuestro Proceso</a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative animate-on-scroll zoom-in is-visible">
+                    <div class="absolute -top-8 -left-8 w-32 h-32 bg-brand-secondary rounded-full opacity-50"></div>
+                    <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-brand-accent rounded-full opacity-50"></div>
+                    <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=2940&auto=format&fit=crop" alt="Taza de café con paisaje de fondo" class="rounded-2xl shadow-2xl relative z-10 w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-16 md:py-24 space-y-24 md:space-y-32">
+
+        <!-- About Us Section -->
+        <section id="about" class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="animate-on-scroll slide-in-left relative">
+                 <img src="https://images.unsplash.com/photo-1511920183353-3c0a5d5a8f3c?q=80&w=2787&auto=format&fit=crop" alt="Propietario de la finca de café sonriendo" class="object-cover w-full h-full rounded-2xl shadow-xl">
+                 <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-lg w-4/5 md:w-3/5">
+                    <h4 class="font-bold text-brand-dark">"Cada taza cuenta una historia de dedicación y amor por la tierra."</h4>
+                    <p class="text-sm mt-2 text-gray-500">- Fundador, Café El Aroma</p>
+                 </div>
+            </div>
+            <div class="animate-on-scroll slide-in-right">
+                <span class="text-brand-accent font-semibold tracking-wider">DESDE 1985</span>
+                <h2 class="text-4xl md:text-5xl mb-6 mt-2">Nuestra Herencia: Pasión que se Siente</h2>
+                <p class="mb-4 text-lg">Más que un nombre, "Café El Aroma" es el legado de una familia que ha dedicado su vida a perfeccionar el arte del café. Respetando la tierra y las tradiciones, cultivamos granos que cuentan historias.</p>
+                <p class="mb-6">Nuestra misión es llevar a tu taza una experiencia completa: un tributo a la tierra y a las manos que lo cultivan, un momento de conexión en tu día.</p>
+                <a href="#contact" class="text-brand-accent font-semibold link-underline transition">Conoce más sobre nosotros</a>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="text-center">
+            <div class="animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">Lo que nos hace diferentes</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">No solo vendemos café, compartimos una filosofía de excelencia en cada detalle.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:border-brand-accent transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up">
+                    <div class="bg-brand-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-hands-helping text-3xl text-brand-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Comercio Directo</h3>
+                    <p>Trabajamos mano a mano con familias cafeteras, asegurando un trato justo y una calidad superior.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:border-brand-accent transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                    <div class="bg-brand-accent/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                       <i class="fas fa-fire-alt text-3xl text-brand-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Tueste Artesanal</h3>
+                    <p>Tostamos en pequeños lotes para resaltar los perfiles de sabor únicos de cada origen.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:border-brand-accent transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up" style="transition-delay: 400ms;">
+                    <div class="bg-brand-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                       <i class="fas fa-seedling text-3xl text-brand-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cosecha Selectiva</h3>
+                    <p>Solo las cerezas de café más maduras son recolectadas a mano para garantizar la dulzura.</p>
+                </div>
+                 <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:border-brand-accent transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up" style="transition-delay: 600ms;">
+                    <div class="bg-brand-accent/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                       <i class="fas fa-box-open text-3xl text-brand-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Frescura Garantizada</h3>
+                    <p>Enviamos tu café a los pocos días de ser tostado para que disfrutes su máximo aroma y sabor.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Coffees Section -->
+        <section id="products" class="text-center">
+            <div class="animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">Descubre tu Próximo Favorito</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">Cada variedad es un viaje sensorial a su origen. ¿Cuál eliges hoy?</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up group overflow-hidden text-left">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1599160538421-d5621457d5b8?q=80&w=2799&auto=format&fit=crop" alt="Bolsa de Café Clásico" class="w-full h-72 object-cover">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                             <button class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-brand-accent text-white text-xs font-bold px-3 py-1 rounded-full">MÁS VENDIDO</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-1">Antioquia, Colombia</p>
+                        <h3 class="text-2xl mb-2">Clásico de la Montaña</h3>
+                        <p class="text-brand-accent font-medium">Notas: Chocolate, nuez, caramelo.</p>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                 <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up group overflow-hidden text-left" style="transition-delay: 200ms;">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1621875954653-f8a8b2353a32?q=80&w=2864&auto=format&fit=crop" alt="Bolsa de Café Reserva" class="w-full h-72 object-cover">
+                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <button class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
+                         </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-1">Sierra Nevada, Colombia</p>
+                        <h3 class="text-2xl mb-2">Reserva del Fundador</h3>
+                        <p class="text-brand-accent font-medium">Notas: Frutos rojos, cítricos, cacao.</p>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up group overflow-hidden text-left" style="transition-delay: 400ms;">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1610632380312-5a415334543d?q=80&w=2787&auto=format&fit=crop" alt="Bolsa de Café Exótico" class="w-full h-72 object-cover">
+                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <button class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
+                         </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-1">Huila, Colombia</p>
+                        <h3 class="text-2xl mb-2">Aroma Exótico Geisha</h3>
+                        <p class="text-brand-accent font-medium">Notas: Jazmín, bergamota, maracuyá.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Gallery Section -->
+        <section id="process">
+            <div class="text-center mb-16 animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">El Viaje del Grano a tu Taza</h2>
+                <p class="max-w-3xl mx-auto text-lg">Un proceso artesanal cuidado con esmero en cada etapa para garantizar una calidad inigualable.</p>
+            </div>
+            <div class="space-y-20">
+                <!-- Step 1 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-on-scroll slide-in-left">
+                        <span class="text-7xl font-bold text-gray-200">01</span>
+                        <h3 class="text-3xl mb-3 mt-2">Cosecha Selectiva</h3>
+                        <p>Nuestros caficultores seleccionan a mano solo las cerezas en su punto exacto de maduración. Este es el primer paso para asegurar la dulzura y complejidad del sabor final.</p>
+                    </div>
+                    <div class="animate-on-scroll slide-in-right">
+                        <img src="https://images.unsplash.com/photo-1506192070381-c3516a4f5530?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Cosecha de café">
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                     <div class="animate-on-scroll slide-in-left lg:order-last">
+                        <span class="text-7xl font-bold text-gray-200">02</span>
+                        <h3 class="text-3xl mb-3 mt-2">Secado al Sol</h3>
+                        <p>Los granos se secan lentamente en camas elevadas. Este método natural concentra los azúcares y desarrolla un perfil de sabor más profundo y afrutado, honrando el ritmo de la naturaleza.</p>
+                    </div>
+                    <div class="animate-on-scroll slide-in-right">
+                        <img src="https://images.unsplash.com/photo-1590487823558-b86121815123?q=80&w=2854&auto=format&fit=crop" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Secado de granos de café">
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-on-scroll slide-in-left">
+                        <span class="text-7xl font-bold text-gray-200">03</span>
+                        <h3 class="text-3xl mb-3 mt-2">Tueste de Autor</h3>
+                        <p>Aquí ocurre la magia. Nuestro Maestro Tostador ajusta con precisión el tiempo y la temperatura para cada lote, creando una curva de tueste única que revela las notas distintivas de su origen.</p>
+                    </div>
+                    <div class="animate-on-scroll slide-in-right">
+                        <img src="https://images.unsplash.com/photo-1551932943-20b135c91a33?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Tostado de café">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-16 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                <a href="#full-process-page" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
+                    Conoce el Proceso Completo
+                </a>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="bg-brand-secondary/20 rounded-2xl py-20 px-6">
+            <div class="container mx-auto text-center">
+                <div class="animate-on-scroll fade-in-up">
+                    <h2 class="text-4xl md:text-5xl mb-4">Buenas Vibras, Buen Café</h2>
+                    <p class="max-w-3xl mx-auto text-lg mb-12">La confianza y alegría de nuestra comunidad es nuestro mejor grano.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-md animate-on-scroll fade-in-up">
+                        <p class="mb-6 font-medium text-brand-dark">"¡Cambió mi forma de ver el café! El 'Reserva del Fundador' es una locura de sabor. Calidad y servicio de primera."</p>
+                        <p class="font-bold">- Ana Sofía R.</p>
+                        <p class="text-sm text-brand-accent">Barista Profesional</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-md animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                        <p class="mb-6 font-medium text-brand-dark">"No es solo un producto, es una experiencia. Se nota la pasión en cada detalle, desde el empaque hasta el sabor."</p>
+                        <p class="font-bold">- Carlos G.</p>
+                        <p class="text-sm text-brand-accent">Dueño de Cafetería</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-md animate-on-scroll fade-in-up" style="transition-delay: 400ms;">
+                        <p class="mb-6 font-medium text-brand-dark">"Pedí para la ofi y todos quedaron felices. El 'Clásico de la Montaña' es ahora nuestro café oficial de los lunes."</p>
+                        <p class="font-bold">- Valentina M.</p>
+                        <p class="text-sm text-brand-accent">Gerente de Compras</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Instagram Section -->
+        <section id="instagram-feed" class="text-center">
+             <div class="animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">Únete a la Comunidad</h2>
+                <a href="#" target="_blank" class="text-lg mb-12 block text-brand-accent font-semibold">@CafeElAroma en Instagram</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                <a href="#" class="group relative block overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=3137" alt="Latte art" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
+                </a>
+                <a href="#" class="group relative block overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1507133750040-4a8f570215de?q=80&w=2874" alt="Persona sosteniendo una taza de café" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
+                </a>
+                <a href="#" class="group relative block overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1558778132-3551b7327309?q=80&w=2864" alt="Granos de café tostados" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
+                </a>
+                <a href="#" class="group relative block overflow-hidden rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2942" alt="Preparación de café" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- Blog Section -->
+        <section id="blog" class="text-center">
+            <div class="animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">Diario del Café</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">Tips, historias y todo lo que quieres saber sobre el fascinante mundo del café.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="#" class="bg-white rounded-2xl shadow-sm overflow-hidden animate-on-scroll fade-in-up transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 text-left group">
+                    <div class="overflow-hidden">
+                       <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?q=80&w=2940&auto=format&fit=crop" alt="Métodos de preparación de café" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-brand-accent mb-2 font-semibold">GUÍA DE PREPARACIÓN</p>
+                        <h3 class="text-xl font-semibold mb-4 group-hover:text-brand-accent transition-colors">5 Métodos para el Café Perfecto en Casa</h3>
+                        <span class="font-semibold text-brand-dark">Leer más &rarr;</span>
+                    </div>
+                </a>
+                <a href="#" class="bg-white rounded-2xl shadow-sm overflow-hidden animate-on-scroll fade-in-up transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 text-left group" style="transition-delay: 200ms;">
+                     <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2940&auto=format&fit=crop" alt="Finca de café" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-6 text-left">
+                        <p class="text-sm text-brand-accent mb-2 font-semibold">NUESTRA FINCA</p>
+                        <h3 class="text-xl font-semibold mb-4 group-hover:text-brand-accent transition-colors">Viaje al Corazón de la Cosecha en Sierra Nevada</h3>
+                        <span class="font-semibold text-brand-dark">Leer más &rarr;</span>
+                    </div>
+                </a>
+                <a href="#" class="bg-white rounded-2xl shadow-sm overflow-hidden animate-on-scroll fade-in-up transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 text-left group" style="transition-delay: 400ms;">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1528731708534-816fe59f90cb?q=80&w=2940&auto=format&fit=crop" alt="Café y postre" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-6 text-left">
+                        <p class="text-sm text-brand-accent mb-2 font-semibold">MARIDAJE</p>
+                        <h3 class="text-xl font-semibold mb-4 group-hover:text-brand-accent transition-colors">Cómo Maridar Café y Postres (y no fallar en el intento)</h3>
+                        <span class="font-semibold text-brand-dark">Leer más &rarr;</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+             <div class="text-center mb-12 animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">¿Tienes Preguntas? Tenemos Respuestas.</h2>
+                <p class="max-w-3xl mx-auto text-lg">Todo lo que necesitas saber para disfrutar de la mejor experiencia con nuestro café.</p>
+            </div>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 bg-white rounded-2xl shadow-lg">
+                <div class="animate-on-scroll slide-in-left">
+                    <img src="https://images.unsplash.com/photo-1559523161-0d48f3319031?q=80&w=2824&auto=format&fit=crop" alt="Persona pensativa en una cafetería" class="rounded-2xl shadow-md w-full h-auto object-cover">
+                </div>
+                <div class="animate-on-scroll slide-in-right text-center lg:text-left">
+                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Resolvemos todas tus dudas</h3>
+                    <p class="mb-8 text-lg">Hemos compilado una lista completa de preguntas frecuentes para ayudarte a sacar el máximo provecho de tu experiencia con Café El Aroma. Desde el origen de nuestros granos hasta cómo preparar la taza perfecta.</p>
+                    <a href="#faq-page" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
+                        Ver Preguntas Frecuentes
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-white rounded-2xl p-10 md:p-16 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="animate-on-scroll fade-in-up">
+                <h2 class="text-4xl md:text-5xl mb-4">¿Hablemos de Café?</h2>
+                <p class="text-lg mb-8">Si tienes preguntas, quieres hacer una compra mayorista o simplemente quieres saludarnos, no dudes en escribirnos.</p>
+                <div class="space-y-4">
+                    <p><i class="fas fa-envelope text-brand-accent mr-3"></i> hola@cafeelaroma.com</p>
+                    <p><i class="fas fa-phone text-brand-accent mr-3"></i> +57 300 123 4567</p>
+                    <p><i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> Finca El Aroma, Antioquia, Colombia</p>
+                </div>
+            </div>
+            <form class="animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <input type="text" placeholder="Tu Nombre" class="w-full p-4 rounded-lg bg-gray-100 border-transparent focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                    <input type="email" placeholder="Tu Correo Electrónico" class="w-full p-4 rounded-lg bg-gray-100 border-transparent focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+                <textarea placeholder="Tu Mensaje..." rows="5" class="w-full p-4 rounded-lg bg-gray-100 border-transparent mb-6 focus:outline-none focus:ring-2 focus:ring-brand-accent"></textarea>
+                <button type="submit" class="w-full bg-brand-dark text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-accent transition-transform transform hover:scale-105">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="md:col-span-2 lg:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4">Café El Aroma</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Cultivando momentos, una taza a la vez. Desde 1985.</p>
+                     <div class="flex space-x-5">
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f fa-lg"></i></a>
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter fa-lg"></i></a>
+                     </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 tracking-wider">Explorar</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-white transition">Sobre Nosotros</a></li>
+                        <li><a href="#products" class="hover:text-white transition">Cafés</a></li>
+                        <li><a href="#process" class="hover:text-white transition">Proceso</a></li>
+                        <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-4 tracking-wider">Ayuda</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#contact" class="hover:text-white transition">Contacto</a></li>
+                        <li><a href="#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="hover:text-white transition">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 tracking-wider">Únete al club</h4>
+                    <p class="text-gray-400 mb-4 text-sm">Recibe ofertas y sé el primero en probar nuestros nuevos cafés.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="tu@email.com" class="w-full py-2 px-3 text-sm rounded-l-md border-0 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-accent">
+                        <button class="bg-brand-accent px-4 rounded-r-md hover:opacity-80 transition">&rarr;</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Café El Aroma. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Preloader ---
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            const headerLogo = document.getElementById('header-logo');
+            const navLinks = header.querySelectorAll('nav a:not(.bg-brand-dark)');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-md');
+                } else {
+                    header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-md');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            // Close mobile menu on link click
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+
+            // --- Animate on Scroll ---
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+            
+        });
+    </script>
+</body>
+</html>
+

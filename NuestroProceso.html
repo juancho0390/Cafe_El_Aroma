@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Proceso - Café El Aroma</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Styles and Animations -->
+    <style>
+        :root {
+            --bg-main: #F9F6F1;
+            --text-dark: #2D2A26;
+            --text-body: #5B5650;
+            --brand-accent: #E58A4E;
+            --brand-secondary: #A3B4A2;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+        }
+        .bg-brand-dark { background-color: var(--text-dark); }
+        .bg-brand-accent { background-color: var(--brand-accent); }
+        .text-brand-accent { color: var(--brand-accent); }
+        .link-underline { position: relative; text-decoration: none; }
+        .link-underline::after {
+            content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
+            bottom: -4px; left: 0; background-color: var(--brand-accent);
+            transform-origin: bottom right; transition: transform 0.25s ease-out;
+        }
+        .link-underline:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+        .animate-on-scroll { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-up { transform: translateY(40px); }
+        .is-visible { opacity: 1; transform: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-brand-dark">Café El Aroma</a>
+            <div class="hidden lg:flex items-center space-x-10 text-sm font-medium">
+                <a href="index.html#about" class="text-brand-dark hover:text-brand-accent transition link-underline">Sobre Nosotros</a>
+                <a href="index.html#products" class="text-brand-dark hover:text-brand-accent transition link-underline">Nuestros Cafés</a>
+                <a href="proceso.html" class="text-brand-accent font-bold link-underline">Proceso</a>
+                <a href="index.html#blog" class="text-brand-dark hover:text-brand-accent transition link-underline">Blog</a>
+                <a href="index.html#contact" class="bg-brand-dark text-white px-6 py-2.5 rounded-full hover:bg-brand-accent transition">Contacto</a>
+            </div>
+            <button id="mobile-menu-button" class="lg:hidden text-brand-dark focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md shadow-lg">
+            <a href="index.html#about" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Sobre Nosotros</a>
+            <a href="index.html#products" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Nuestros Cafés</a>
+            <a href="proceso.html" class="block text-brand-accent text-center py-4 font-bold bg-gray-100">Proceso</a>
+            <a href="index.html#blog" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Blog</a>
+            <a href="index.html#contact" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero Section for Process Page -->
+    <section class="relative bg-brand-dark text-white pt-40 pb-20 lg:pt-56 lg:pb-32 text-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2940&auto=format&fit=crop" alt="Finca de café en la montaña" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <span class="text-brand-accent font-semibold tracking-wider animate-on-scroll fade-in-up">EL ARTE DETRÁS DE CADA GRANO</span>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mt-4 mb-6 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">El Viaje a la Taza Perfecta</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 animate-on-scroll fade-in-up" style="transition-delay: 400ms;">
+                Descubre la dedicación, la ciencia y la pasión que transforman una simple cereza de café en la bebida que inspira tus días. Un ritual que honramos en cada paso.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-24 space-y-28">
+
+        <!-- Step 1: Cultivo -->
+        <section class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-on-scroll fade-in-up">
+            <div class="relative">
+                <div class="absolute -top-6 -left-6 w-24 h-24 bg-brand-secondary/30 rounded-full"></div>
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2787&auto=format&fit=crop" class="relative object-cover w-full h-full rounded-2xl shadow-xl z-10" alt="Plantas de café en crecimiento">
+            </div>
+            <div>
+                <span class="text-7xl lg:text-8xl font-bold text-gray-200">01</span>
+                <h3 class="text-3xl lg:text-4xl font-semibold mb-4 -mt-4">Terroir y Cultivo</h3>
+                <p class="text-lg mb-4">Todo comienza en las montañas de Colombia, a más de 1.700 metros sobre el nivel del mar. Aquí, nuestro café Arábica crece bajo la sombra de árboles nativos, en un microclima único que le confiere su acidez brillante y sus complejas notas. Este 'terroir' es el alma de nuestro café.</p>
+                <p>Nuestros agricultores asociados cultivan de forma sostenible, respetando los ciclos de la tierra para garantizar no solo un grano excepcional, sino también el futuro de nuestro ecosistema.</p>
+            </div>
+        </section>
+
+        <!-- Step 2: Cosecha -->
+        <section class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-on-scroll fade-in-up">
+            <div class="lg:order-last relative">
+                <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-brand-accent/30 rounded-full"></div>
+                <img src="https://images.unsplash.com/photo-1620405814109-633405b2af63?q=80&w=2809&auto=format&fit=crop" class="relative object-cover w-full h-full rounded-2xl shadow-xl z-10" alt="Manos recolectando cerezas de café maduras">
+            </div>
+            <div>
+                <span class="text-7xl lg:text-8xl font-bold text-gray-200">02</span>
+                <h3 class="text-3xl lg:text-4xl font-semibold mb-4 -mt-4">Cosecha Selectiva</h3>
+                <p class="text-lg mb-4">Olvídate de las máquinas. Cada una de nuestras cerezas de café es recolectada a mano, una por una. Este método, conocido como "picking", asegura que solo los frutos en su punto exacto de maduración —un rojo intenso y profundo— lleguen al siguiente paso. Es un trabajo de paciencia y precisión que define la dulzura y la calidad de la taza final.</p>
+                <p>Este cuidado inicial evita sabores amargos o astringentes, sentando las bases para un perfil de sabor limpio y vibrante.</p>
+            </div>
+        </section>
+
+        <!-- Step 3: Beneficio -->
+        <section class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-on-scroll fade-in-up">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1618164479978-862c95a56a80?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-full rounded-2xl shadow-xl" alt="Granos de café siendo lavados">
+            </div>
+            <div>
+                <span class="text-7xl lg:text-8xl font-bold text-gray-200">03</span>
+                <h3 class="text-3xl lg:text-4xl font-semibold mb-4 -mt-4">Beneficio Húmedo</h3>
+                <p class="text-lg mb-4">Una vez cosechadas, las cerezas se despulpan el mismo día para retirar la cáscara y la pulpa, dejando el grano cubierto de una capa llamada mucílago. Luego, los granos fermentan en tanques con agua pura de manantial durante 18 a 36 horas. Este proceso de "beneficio lavado" es clave para desarrollar la acidez brillante y las notas limpias y frutales características de los mejores cafés colombianos.</p>
+            </div>
+        </section>
+
+        <!-- Step 4: Secado -->
+        <section class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-on-scroll fade-in-up">
+            <div class="lg:order-last relative">
+                 <img src="https://images.unsplash.com/photo-1590487823558-b86121815123?q=80&w=2854&auto=format&fit=crop" class="object-cover w-full h-full rounded-2xl shadow-xl" alt="Secado de granos de café al sol en camas africanas">
+            </div>
+            <div>
+                <span class="text-7xl lg:text-8xl font-bold text-gray-200">04</span>
+                <h3 class="text-3xl lg:text-4xl font-semibold mb-4 -mt-4">Secado al Sol</h3>
+                <p class="text-lg mb-4">No usamos secadoras mecánicas. Nuestros granos se secan lentamente sobre "camas africanas" elevadas, que permiten una circulación de aire constante. Durante 15 a 25 días, los granos son removidos a mano constantemente para asegurar un secado uniforme hasta alcanzar el nivel de humedad ideal del 11%. Este proceso paciente y natural es fundamental para concentrar los azúcares y desarrollar la complejidad del sabor.</p>
+            </div>
+        </section>
+        
+        <!-- Step 5: Tueste -->
+        <section class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-on-scroll fade-in-up">
+             <div class="relative">
+                <img src="https://images.unsplash.com/photo-1549996485-617937466144?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-full rounded-2xl shadow-xl" alt="Maestro tostador supervisando el proceso de tueste">
+            </div>
+            <div>
+                <span class="text-7xl lg:text-8xl font-bold text-gray-200">05</span>
+                <h3 class="text-3xl lg:text-4xl font-semibold mb-4 -mt-4">Tueste de Autor</h3>
+                <p class="text-lg mb-4">Aquí es donde ocurre la alquimia. Cada lote es tostado artesanalmente por nuestro Maestro Tostador. Él no sigue una fórmula, sino que escucha, huele y observa los granos, ajustando el calor y el flujo de aire para desarrollar un "perfil de tueste" único que resalte las notas intrínsecas del origen. Es un baile entre ciencia y arte que transforma el potencial del grano verde en un espectro de sabores y aromas.</p>
+            </div>
+        </section>
+
+        <!-- Step 6: Cata y Empaque -->
+         <section class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-on-scroll fade-in-up">
+            <div class="lg:order-last relative">
+                 <img src="https://images.unsplash.com/photo-1565275414238-e1f2b2f6bffa?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-full rounded-2xl shadow-xl" alt="Bolsas de café con válvula listas para ser enviadas">
+            </div>
+            <div>
+                <span class="text-7xl lg:text-8xl font-bold text-gray-200">06</span>
+                <h3 class="text-3xl lg:text-4xl font-semibold mb-4 -mt-4">Cata y Frescura</h3>
+                <p class="text-lg mb-4">Cada lote tostado es catado por nuestro equipo para garantizar que cumple nuestros estándares de excelencia. Solo entonces se envasa en nuestras bolsas con válvula desgasificadora unidireccional. Esta válvula permite que el café recién tostado libere CO2 sin que entre oxígeno, preservando su frescura y asegurando que la experiencia en tu taza sea tan vibrante como el día en que se tostó.</p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- CTA Section -->
+    <section class="bg-white">
+        <div class="container mx-auto px-6 py-20 text-center">
+            <h2 class="text-4xl md:text-5xl mb-4 animate-on-scroll fade-in-up">Prueba el Resultado</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-8 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">Ahora que conoces la historia y la pasión en cada grano, es hora de vivir la experiencia. Descubre tu próximo café favorito.</p>
+            <div class="animate-on-scroll fade-in-up" style="transition-delay: 400ms;">
+                <a href="index.html#products" class="inline-block bg-brand-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
+                    Comprar Nuestros Cafés
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="md:col-span-2 lg:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4">Café El Aroma</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Cultivando momentos, una taza a la vez. Desde 1985.</p>
+                     <div class="flex space-x-5">
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f fa-lg"></i></a>
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter fa-lg"></i></a>
+                     </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 tracking-wider">Explorar</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="index.html#about" class="hover:text-white transition">Sobre Nosotros</a></li>
+                        <li><a href="index.html#products" class="hover:text-white transition">Cafés</a></li>
+                        <li><a href="proceso.html" class="hover:text-white transition">Proceso</a></li>
+                        <li><a href="index.html#blog" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-4 tracking-wider">Ayuda</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="index.html#contact" class="hover:text-white transition">Contacto</a></li>
+                        <li><a href="index.html#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="hover:text-white transition">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 tracking-wider">Únete al club</h4>
+                    <p class="text-gray-400 mb-4 text-sm">Recibe ofertas y sé el primero en probar nuestros nuevos cafés.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="tu@email.com" class="w-full py-2 px-3 text-sm rounded-l-md border-0 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-accent">
+                        <button class="bg-brand-accent px-4 rounded-r-md hover:opacity-80 transition">&rarr;</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Café El Aroma. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            
+            // --- Animate on Scroll ---
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

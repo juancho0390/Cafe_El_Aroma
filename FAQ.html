@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Café El Aroma</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Styles and Animations -->
+    <style>
+        :root {
+            --bg-main: #F9F6F1; /* Off-white, warm */
+            --text-dark: #2D2A26; /* Deep coffee brown */
+            --text-body: #5B5650;
+            --brand-accent: #E58A4E; /* Terracotta / vibrant orange */
+            --brand-secondary: #A3B4A2; /* Sage green */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+        }
+
+        /* Custom Colors for Tailwind */
+        .bg-brand-dark { background-color: var(--text-dark); }
+        .bg-brand-accent { background-color: var(--brand-accent); }
+        .text-brand-dark { color: var(--text-dark); }
+        .text-brand-accent { color: var(--brand-accent); }
+
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-main);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        #preloader .coffee-bean {
+            width: 30px;
+            height: 38px;
+            background-color: var(--text-dark);
+            border-radius: 50% / 60%;
+            position: relative;
+            overflow: hidden;
+            animation: spin 1.5s infinite linear;
+        }
+        #preloader .coffee-bean::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            width: 5px;
+            height: 110%;
+            background: var(--bg-main);
+            transform: translateX(-50%) rotate(15deg);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Animation Trigger Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up { transform: translateY(40px); }
+        .is-visible { opacity: 1; transform: none; }
+        
+        /* Modern Underline Effect */
+        .link-underline {
+            position: relative;
+            text-decoration: none;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--brand-accent);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* FAQ Accordion */
+        .faq-question { cursor: pointer; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 250px; /* Adjust as needed */
+            padding-top: 0.5rem;
+        }
+        .faq-item .icon { transition: transform 0.3s ease-out; }
+        .faq-item.active .icon { transform: rotate(135deg); }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="coffee-bean"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Updated the href to point to your main page -->
+            <a href="index.html" class="text-2xl font-bold text-brand-dark transition-colors duration-300" id="header-logo">Café El Aroma</a>
+            <div class="hidden lg:flex items-center space-x-10 text-sm font-medium">
+                <!-- Added "Inicio" link -->
+                <a href="index.html" class="text-brand-dark hover:text-brand-accent transition link-underline">Inicio</a>
+                <a href="index.html#about" class="text-brand-dark hover:text-brand-accent transition link-underline">Sobre Nosotros</a>
+                <a href="index.html#products" class="text-brand-dark hover:text-brand-accent transition link-underline">Nuestros Cafés</a>
+                <a href="index.html#process" class="text-brand-dark hover:text-brand-accent transition link-underline">Proceso</a>
+                <a href="index.html#blog" class="text-brand-dark hover:text-brand-accent transition link-underline">Blog</a>
+                <a href="index.html#contact" class="bg-brand-dark text-white px-6 py-2.5 rounded-full hover:bg-brand-accent transition">Contacto</a>
+            </div>
+            <button id="mobile-menu-button" class="lg:hidden text-brand-dark focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md shadow-lg">
+             <!-- Added "Inicio" link -->
+            <a href="index.html" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Inicio</a>
+            <a href="index.html#about" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Sobre Nosotros</a>
+            <a href="index.html#products" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Nuestros Cafés</a>
+            <a href="index.html#process" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Proceso</a>
+            <a href="index.html#blog" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Blog</a>
+            <a href="index.html#contact" class="block text-brand-dark text-center py-4 hover:bg-brand-accent hover:text-white transition">Contacto</a>
+        </div>
+    </header>
+
+    <!-- FAQ Hero Section -->
+    <section class="relative bg-brand-secondary/20 pt-40 pb-20 text-center">
+        <div class="container mx-auto px-6 relative z-10">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 animate-on-scroll fade-in-up is-visible">El Saber Detrás del Sabor</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto animate-on-scroll fade-in-up is-visible" style="transition-delay: 200ms;">¿Tienes preguntas? Tenemos las respuestas. Explora las dudas más comunes y conviértete en un experto de Café El Aroma.</p>
+        </div>
+    </section>
+
+    <!-- Main FAQ Content -->
+    <main class="container mx-auto px-6 py-16 md:py-24">
+        <section id="faq-list">
+             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Qué significa "café de especialidad"?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Es un café que ha obtenido más de 80 puntos en una escala de 100 por catadores profesionales. Se valora por su alta calidad, sabor excepcional y la ausencia de defectos, desde la siembra hasta la taza.</p></div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up" style="transition-delay: 100ms;">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Qué diferencia hay entre tueste claro, medio y oscuro?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">El tueste claro resalta la acidez y las notas originales del grano (florales, frutales). El medio ofrece un balance entre acidez y cuerpo. El oscuro tiene menos acidez, más cuerpo y sabores a chocolate o caramelo, pero puede opacar las notas de origen.</p></div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up" style="transition-delay: 150ms;">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Venden el café molido o en grano?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Ofrecemos ambas opciones. Sin embargo, siempre recomendamos comprarlo en grano y molerlo justo antes de prepararlo para preservar al máximo su frescura, aroma y sabor.</p></div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up" style="transition-delay: 250ms;">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Cómo debo almacenar mi café?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Guárdalo en un recipiente hermético, en un lugar fresco, seco y oscuro. Evita la nevera o el congelador, ya que la humedad y los olores pueden afectar la calidad del grano.</p></div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Cuál es la fecha de tueste de mi café?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Tostamos nuestro café casi a diario. La fecha de tueste siempre está impresa en la bolsa para que sepas exactamente qué tan fresco está. Para un sabor óptimo, consúmelo entre 7 y 30 días después de esa fecha.</p></div>
+                </div>
+                <!-- FAQ Item 6 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Cuánto tiempo tardará en llegar mi pedido?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Normalmente, los pedidos se procesan y envían en 1-2 días hábiles. El tiempo de entrega en Colombia suele ser de 2 a 5 días hábiles, dependiendo de tu ubicación.</p></div>
+                </div>
+                <!-- FAQ Item 7 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Realizan envíos internacionales?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Actualmente estamos enfocados en el mercado nacional colombiano, pero estamos trabajando para ofrecer envíos internacionales pronto. ¡Suscríbete a nuestro boletín para ser el primero en saberlo!</p></div>
+                </div>
+                <!-- FAQ Item 8 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Qué es el "comercio directo"?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Significa que compramos los granos directamente a los caficultores, sin intermediarios. Esto nos permite pagarles un precio más justo por su increíble trabajo y construir relaciones a largo plazo que garantizan una calidad sostenible.</p></div>
+                </div>
+                <!-- FAQ Item 9 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Su café es orgánico?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Trabajamos con fincas que utilizan prácticas agrícolas sostenibles y amigables con el medio ambiente. Aunque no todos nuestros cafés tienen certificación orgánica oficial, priorizamos la calidad y el cultivo responsable.</p></div>
+                </div>
+                <!-- FAQ Item 10 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Tienen opciones de suscripción?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">¡Sí! Ofrecemos planes de suscripción flexibles para que nunca te quedes sin tu café favorito. Puedes elegir la frecuencia de entrega y cambiar o cancelar tu plan en cualquier momento.</p></div>
+                </div>
+                <!-- FAQ Item 11 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Puedo visitar su finca o tostadora?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Nos encantaría recibirte. Organizamos tours y experiencias de catación de vez en cuando. Sigue nuestras redes sociales o suscríbete a nuestro boletín para enterarte de las próximas fechas.</p></div>
+                </div>
+                <!-- FAQ Item 12 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Qué método de preparación recomiendan para principiantes?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">La Prensa Francesa es un excelente punto de partida. Es fácil de usar, económica y produce una taza con mucho cuerpo y sabor. El V60 también es una gran opción para quienes quieren explorar cafés más limpios y con notas más claras.</p></div>
+                </div>
+                <!-- FAQ Item 13 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Qué significa la "altura" en la descripción del café?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">La altitud a la que se cultiva el café afecta su sabor. Los cafés de mayor altura (generalmente por encima de 1,200 metros) crecen más lentamente, desarrollando sabores más complejos, ácidos y florales.</p></div>
+                </div>
+                <!-- FAQ Item 14 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Cuál es su política de devoluciones?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Tu satisfacción es nuestra prioridad. Si no estás contento con tu café, contáctanos dentro de los 15 días posteriores a la compra y encontraremos una solución, ya sea un reemplazo o un reembolso.</p></div>
+                </div>
+                <!-- FAQ Item 15 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Ofrecen precios para mayoristas o cafeterías?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">¡Claro que sí! Nos encanta asociarnos con cafeterías, oficinas y restaurantes que comparten nuestra pasión por el buen café. Escríbenos a través del formulario de contacto para más información.</p></div>
+                </div>
+                <!-- FAQ Item 16 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿El café tiene fecha de vencimiento?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">El café no se "vence" como otros alimentos, pero sí pierde frescura y sabor con el tiempo. Recomendamos consumirlo dentro de los 3 meses posteriores a la fecha de tueste para disfrutarlo en su punto óptimo.</p></div>
+                </div>
+                <!-- FAQ Item 17 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Qué son las "notas de sabor"?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Son los sabores y aromas sutiles que percibimos en el café, como chocolate, frutas, flores o nueces. No son sabores añadidos, sino características intrínsecas del grano, desarrolladas por su origen, proceso y tueste.</p></div>
+                </div>
+                <!-- FAQ Item 18 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Tienen opciones de café descafeinado?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Sí, ofrecemos una opción de descafeinado de alta calidad. Utilizamos métodos de descafeinización naturales (como el de la caña de azúcar) que preservan el sabor original del café sin usar químicos.</p></div>
+                </div>
+                <!-- FAQ Item 19 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Cuál es la diferencia entre Arábica y Robusta?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">Arábica es una especie de café de alta calidad, cultivada en altura, con sabores más complejos y delicados. Robusta tiene más cafeína, un sabor más fuerte y amargo, y se usa a menudo en mezclas de espresso y café instantáneo. Nosotros solo trabajamos con granos 100% Arábica.</p></div>
+                </div>
+                <!-- FAQ Item 20 -->
+                <div class="faq-item bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:border-brand-accent/50 transition-colors duration-300 animate-on-scroll fade-in-up">
+                    <div class="faq-question flex justify-between items-center">
+                        <h4 class="text-lg font-semibold">¿Cómo puedo preparar café frío (cold brew)?</h4>
+                        <i class="fas fa-plus text-brand-accent icon text-xl"></i>
+                    </div>
+                    <div class="faq-answer"><p class="mt-2 text-base">¡Es muy fácil! Usa una molienda gruesa y mezcla una parte de café por ocho partes de agua fría en un frasco. Déjalo reposar en la nevera durante 12-18 horas. Luego, filtra el concentrado y sírvelo con hielo, agua o leche. ¡Es suave y muy refrescante!</p></div>
+                </div>
+             </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta-contact" class="text-center mt-24">
+             <div class="animate-on-scroll fade-in-up">
+                <h2 class="text-3xl md:text-4xl mb-4">¿Aún tienes dudas?</h2>
+                <p class="max-w-2xl mx-auto text-lg mb-8">Si no encontraste la respuesta que buscabas, nuestro equipo de apasionados por el café está listo para ayudarte. ¡Hablemos!</p>
+                <a href="index.html#contact" class="bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">Contactar Ahora</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white mt-16">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="md:col-span-2 lg:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4">Café El Aroma</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Cultivando momentos, una taza a la vez. Desde 1985.</p>
+                     <div class="flex space-x-5">
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f fa-lg"></i></a>
+                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter fa-lg"></i></a>
+                     </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 tracking-wider">Explorar</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="index.html#about" class="hover:text-white transition">Sobre Nosotros</a></li>
+                        <li><a href="index.html#products" class="hover:text-white transition">Cafés</a></li>
+                        <li><a href="index.html#process" class="hover:text-white transition">Proceso</a></li>
+                        <li><a href="index.html#blog" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-semibold mb-4 tracking-wider">Ayuda</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="index.html#contact" class="hover:text-white transition">Contacto</a></li>
+                        <li><a href="#faq-list" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="hover:text-white transition">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 tracking-wider">Únete al club</h4>
+                    <p class="text-gray-400 mb-4 text-sm">Recibe ofertas y sé el primero en probar nuestros nuevos cafés.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="tu@email.com" class="w-full py-2 px-3 text-sm rounded-l-md border-0 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-accent">
+                        <button class="bg-brand-accent px-4 rounded-r-md hover:opacity-80 transition">&rarr;</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Café El Aroma. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Preloader ---
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            });
+
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-md');
+                } else {
+                    header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-md');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // --- Animate on Scroll ---
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+            
+            // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.faq-item.active');
+                    if(currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
