@@ -137,8 +137,9 @@
             <div class="hidden lg:flex items-center space-x-10 text-sm font-medium">
                 <a href="#about" class="text-brand-dark hover:text-brand-accent transition link-underline">Sobre Nosotros</a>
                 <a href="#products" class="text-brand-dark hover:text-brand-accent transition link-underline">Nuestros Cafés</a>
-                <a href="#process" class="text-brand-dark hover:text-brand-accent transition link-underline">Proceso</a>
+                <a href="./NuestroProceso.html" class="text-brand-dark hover:text-brand-accent transition link-underline">Proceso</a>
                 <a href="#blog" class="text-brand-dark hover:text-brand-accent transition link-underline">Blog</a>
+                <a href="./FAQ.html" class="text-brand-dark hover:text-brand-accent transition link-underline">FAQ</a>
                 <a href="#contact" class="bg-brand-dark text-white px-6 py-2.5 rounded-full hover:bg-brand-accent transition">Contacto</a>
             </div>
             <button id="mobile-menu-button" class="lg:hidden text-brand-dark focus:outline-none">
@@ -181,10 +182,10 @@
         <!-- About Us Section -->
         <section id="about" class="grid lg:grid-cols-2 gap-12 items-center">
             <div class="animate-on-scroll slide-in-left relative">
-                 <img src="https://images.unsplash.com/photo-1511920183353-3c0a5d5a8f3c?q=80&w=2787&auto=format&fit=crop" alt="Propietario de la finca de café sonriendo" class="object-cover w-full h-full rounded-2xl shadow-xl">
+                 <img src="./assets/images/propietariaAroma.png" alt="Propietario de la finca de café sonriendo" class="object-cover w-full h-full rounded-2xl shadow-xl">
                  <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-lg w-4/5 md:w-3/5">
                     <h4 class="font-bold text-brand-dark">"Cada taza cuenta una historia de dedicación y amor por la tierra."</h4>
-                    <p class="text-sm mt-2 text-gray-500">- Fundador, Café El Aroma</p>
+                    <p class="text-sm mt-2 text-gray-500">- Fundadora, Café El Aroma</p>
                  </div>
             </div>
             <div class="animate-on-scroll slide-in-right">
@@ -244,9 +245,9 @@
                 <!-- Product Card 1 -->
                 <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up group overflow-hidden text-left">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1599160538421-d5621457d5b8?q=80&w=2799&auto=format&fit=crop" alt="Bolsa de Café Clásico" class="w-full h-72 object-cover">
+                        <img src="./assets/images/cafeMontaña.png" alt="Bolsa de Café Clásico" class="w-full h-72 object-cover">
                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                             <button class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
+                             <button data-modal-target="#modal-clasico" class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
                         </div>
                         <span class="absolute top-4 right-4 bg-brand-accent text-white text-xs font-bold px-3 py-1 rounded-full">MÁS VENDIDO</span>
                     </div>
@@ -259,9 +260,9 @@
                 <!-- Product Card 2 -->
                  <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up group overflow-hidden text-left" style="transition-delay: 200ms;">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1621875954653-f8a8b2353a32?q=80&w=2864&auto=format&fit=crop" alt="Bolsa de Café Reserva" class="w-full h-72 object-cover">
+                        <img src="./assets/images/reservaFundador.png" alt="Bolsa de Café Reserva" class="w-full h-72 object-cover">
                          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <button class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
+                              <button data-modal-target="#modal-reserva" class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
                          </div>
                     </div>
                     <div class="p-6">
@@ -273,9 +274,9 @@
                 <!-- Product Card 3 -->
                 <div class="bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll fade-in-up group overflow-hidden text-left" style="transition-delay: 400ms;">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1610632380312-5a415334543d?q=80&w=2787&auto=format&fit=crop" alt="Bolsa de Café Exótico" class="w-full h-72 object-cover">
+                        <img src="./assets/images/exoticoGeisha.png" alt="Bolsa de Café Exótico" class="w-full h-72 object-cover">
                          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <button class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
+                              <button data-modal-target="#modal-exotico" class="bg-white text-brand-dark px-6 py-3 rounded-full font-semibold">Descubrir Sabor</button>
                          </div>
                     </div>
                     <div class="p-6">
@@ -302,7 +303,7 @@
                         <p>Nuestros caficultores seleccionan a mano solo las cerezas en su punto exacto de maduración. Este es el primer paso para asegurar la dulzura y complejidad del sabor final.</p>
                     </div>
                     <div class="animate-on-scroll slide-in-right">
-                        <img src="https://images.unsplash.com/photo-1506192070381-c3516a4f5530?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Cosecha de café">
+                        <img src="./assets/images/cosecha.png" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Cosecha de café">
                     </div>
                 </div>
                 <!-- Step 2 -->
@@ -313,7 +314,7 @@
                         <p>Los granos se secan lentamente en camas elevadas. Este método natural concentra los azúcares y desarrolla un perfil de sabor más profundo y afrutado, honrando el ritmo de la naturaleza.</p>
                     </div>
                     <div class="animate-on-scroll slide-in-right">
-                        <img src="https://images.unsplash.com/photo-1590487823558-b86121815123?q=80&w=2854&auto=format&fit=crop" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Secado de granos de café">
+                        <img src="./assets/images/secadoSol.png" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Secado de granos de café">
                     </div>
                 </div>
                 <!-- Step 3 -->
@@ -324,12 +325,12 @@
                         <p>Aquí ocurre la magia. Nuestro Maestro Tostador ajusta con precisión el tiempo y la temperatura para cada lote, creando una curva de tueste única que revela las notas distintivas de su origen.</p>
                     </div>
                     <div class="animate-on-scroll slide-in-right">
-                        <img src="https://images.unsplash.com/photo-1551932943-20b135c91a33?q=80&w=2787&auto=format&fit=crop" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Tostado de café">
+                        <img src="./assets/images/tostado.png" class="object-cover w-full h-80 rounded-2xl shadow-lg" alt="Tostado de café">
                     </div>
                 </div>
             </div>
             <div class="text-center mt-16 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
-                <a href="#full-process-page" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
+                <a href="./NuestroProceso.html" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
                     Conoce el Proceso Completo
                 </a>
             </div>
@@ -374,11 +375,11 @@
                     <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
                 </a>
                 <a href="#" class="group relative block overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1507133750040-4a8f570215de?q=80&w=2874" alt="Persona sosteniendo una taza de café" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
+                    <img src="./assets/images/mujerBebiendoCafe.png" alt="Persona sosteniendo una taza de café" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
                 </a>
                 <a href="#" class="group relative block overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1558778132-3551b7327309?q=80&w=2864" alt="Granos de café tostados" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
+                    <img src="./assets/images/granoTostado.png" alt="Granos de café tostados" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><i class="fab fa-instagram text-white text-4xl"></i></div>
                 </a>
                 <a href="#" class="group relative block overflow-hidden rounded-2xl">
@@ -418,7 +419,7 @@
                 </a>
                 <a href="#" class="bg-white rounded-2xl shadow-sm overflow-hidden animate-on-scroll fade-in-up transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 text-left group" style="transition-delay: 400ms;">
                     <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1528731708534-816fe59f90cb?q=80&w=2940&auto=format&fit=crop" alt="Café y postre" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <img src="./assets/images/maridarCafe.png" alt="Café y postre" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-6 text-left">
                         <p class="text-sm text-brand-accent mb-2 font-semibold">MARIDAJE</p>
@@ -437,12 +438,12 @@
             </div>
             <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 bg-white rounded-2xl shadow-lg">
                 <div class="animate-on-scroll slide-in-left">
-                    <img src="https://images.unsplash.com/photo-1559523161-0d48f3319031?q=80&w=2824&auto=format&fit=crop" alt="Persona pensativa en una cafetería" class="rounded-2xl shadow-md w-full h-auto object-cover">
+                    <img src="./assets/images/dudas.png" alt="Persona pensativa en una cafetería" class="rounded-2xl shadow-md w-96 h-auto object-cover">
                 </div>
                 <div class="animate-on-scroll slide-in-right text-center lg:text-left">
                     <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Resolvemos todas tus dudas</h3>
                     <p class="mb-8 text-lg">Hemos compilado una lista completa de preguntas frecuentes para ayudarte a sacar el máximo provecho de tu experiencia con Café El Aroma. Desde el origen de nuestros granos hasta cómo preparar la taza perfecta.</p>
-                    <a href="#faq-page" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
+                    <a href="./FAQ.html" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-80 transition-transform transform hover:scale-105">
                         Ver Preguntas Frecuentes
                     </a>
                 </div>
@@ -516,6 +517,97 @@
         </div>
     </footer>
 
+    <!-- MODAL POP-UPS -->
+    <!-- Modal 1: Clásico de la Montaña -->
+    <div id="modal-clasico" class="modal hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[100] transition-opacity duration-300">
+        <div class="bg-white max-w-4xl w-full rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden transform transition-transform duration-300 scale-95">
+            <!-- Left Side: Image -->
+            <div class="h-64 md:h-auto">
+                <img src="./assets/images/cafeMontaña.png" alt="Bolsa de Café Clásico" class="w-full h-full object-cover">
+            </div>
+            <!-- Right Side: Content -->
+            <div class="p-8 relative flex flex-col">
+                 <button data-modal-close class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl">&times;</button>
+                 <h3 class="text-3xl font-bold mb-2">Clásico de la Montaña</h3>
+                 <p class="text-sm text-gray-500 mb-4">Antioquia, Colombia</p>
+                 <div class="space-y-4 text-base">
+                     <p>El alma de nuestra finca. Este café balanceado y de cuerpo medio es la taza perfecta para empezar cada día. Cosechado en las laderas de Antioquia, su sabor familiar y reconfortante es un tributo a la tradición cafetera colombiana.</p>
+                     <div>
+                         <p class="font-semibold text-brand-dark">Perfil de Sabor:</p>
+                         <p>Un trago suave y equilibrado con notas pronunciadas de <span class="font-medium text-brand-accent">chocolate con leche, nueces tostadas y un final dulce a caramelo</span>.</p>
+                     </div>
+                      <div>
+                         <p class="font-semibold text-brand-dark">Ideal para:</p>
+                         <p>Amantes del café tradicional. Perfecto para métodos de goteo (V60, Chemex) o una clásica cafetera de filtro.</p>
+                     </div>
+                 </div>
+                 <div class="mt-auto pt-6">
+                    <a href="#" class="w-full block text-center bg-brand-dark text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-accent transition">Busca un Proveedor</a>
+                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2: Reserva del Fundador -->
+    <div id="modal-reserva" class="modal hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[100] transition-opacity duration-300">
+        <div class="bg-white max-w-4xl w-full rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden transform transition-transform duration-300 scale-95">
+             <!-- Left Side: Image -->
+             <div class="h-64 md:h-auto">
+                <img src="./assets/images/reservaFundador.png" alt="Bolsa de Café Reserva" class="w-full h-full object-cover">
+            </div>
+            <!-- Right Side: Content -->
+            <div class="p-8 relative flex flex-col">
+                 <button data-modal-close class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl">&times;</button>
+                 <h3 class="text-3xl font-bold mb-2">Reserva del Fundador</h3>
+                 <p class="text-sm text-gray-500 mb-4">Sierra Nevada, Colombia</p>
+                 <div class="space-y-4 text-base">
+                     <p>Un homenaje a nuestro legado. Seleccionamos los mejores microlotes de la cosecha, cultivados a gran altura en la Sierra Nevada. Su proceso de fermentación controlada le otorga una complejidad y un brillo únicos.</p>
+                     <div>
+                         <p class="font-semibold text-brand-dark">Perfil de Sabor:</p>
+                         <p>Una experiencia vibrante y jugosa. Descubre notas de <span class="font-medium text-brand-accent">frutos rojos como fresa y cereza, una acidez cítrica brillante y un retrogusto a cacao oscuro</span>.</p>
+                     </div>
+                      <div>
+                         <p class="font-semibold text-brand-dark">Ideal para:</p>
+                         <p>Paladares curiosos que buscan una taza excepcional. Brilla en métodos de infusión como la Prensa Francesa o el Aeropress.</p>
+                     </div>
+                 </div>
+                 <div class="mt-auto pt-6">
+                    <a href="#" class="w-full block text-center bg-brand-dark text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-accent transition">Busca un Proveedor</a>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Aroma Exótico Geisha -->
+    <div id="modal-exotico" class="modal hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[100] transition-opacity duration-300">
+        <div class="bg-white max-w-4xl w-full rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden transform transition-transform duration-300 scale-95">
+             <!-- Left Side: Image -->
+             <div class="h-64 md:h-auto">
+                <img src="./assets/images/exoticoGeisha.png" alt="Bolsa de Café Exótico" class="w-full h-full object-cover">
+            </div>
+            <!-- Right Side: Content -->
+            <div class="p-8 relative flex flex-col">
+                 <button data-modal-close class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl">&times;</button>
+                 <h3 class="text-3xl font-bold mb-2">Aroma Exótico Geisha</h3>
+                 <p class="text-sm text-gray-500 mb-4">Huila, Colombia</p>
+                 <div class="space-y-4 text-base">
+                     <p>La joya de la corona. La variedad Geisha es mundialmente famosa por su perfil de sabor floral y delicado, casi como un té. Cultivado en condiciones únicas en las altas montañas de Huila, este café es una experiencia sensorial inolvidable.</p>
+                     <div>
+                         <p class="font-semibold text-brand-dark">Perfil de Sabor:</p>
+                         <p>Extremadamente complejo y elegante. Prepárate para una explosión de notas florales como <span class="font-medium text-brand-accent">jazmín, toques cítricos de bergamota y la dulzura tropical del maracuyá</span>.</p>
+                     </div>
+                      <div>
+                         <p class="font-semibold text-brand-dark">Ideal para:</p>
+                         <p>Momentos especiales y para conocedores del café. Se recomienda prepararlo en métodos de goteo como V60 o Kalita Wave para apreciar su delicadeza.</p>
+                     </div>
+                 </div>
+                 <div class="mt-auto pt-6">
+                    <a href="#" class="w-full block text-center bg-brand-dark text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-accent transition">Busca un Proveedor</a>
+                 </div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -563,8 +655,60 @@
             }, { threshold: 0.1 });
             animatedElements.forEach(el => observer.observe(el));
             
+            // --- MODAL LOGIC ---
+            const openModalButtons = document.querySelectorAll('[data-modal-target]');
+            const closeModalButtons = document.querySelectorAll('[data-modal-close]');
+            const modals = document.querySelectorAll('.modal');
+
+            const openModal = (modal) => {
+                if (modal == null) return;
+                modal.classList.remove('hidden');
+                modal.querySelector('div').classList.remove('scale-95'); // Animation
+                document.body.style.overflow = 'hidden';
+            }
+
+            const closeModal = (modal) => {
+                if (modal == null) return;
+                modal.querySelector('div').classList.add('scale-95'); // Animation
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300); // Match transition duration
+            }
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = document.querySelector(button.dataset.modalTarget);
+                    openModal(modal);
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    modals.forEach(modal => {
+                        if (!modal.classList.contains('hidden')) {
+                            closeModal(modal);
+                        }
+                    });
+                }
+            });
+
         });
     </script>
 </body>
 </html>
-
